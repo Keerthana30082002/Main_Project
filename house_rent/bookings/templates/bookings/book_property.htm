@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Book Property{% endblock %}
+
+{% block content %}
+<h2>Book {{ property.title }}</h2>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Book Now</button>
+</form>
+{% endblock %}

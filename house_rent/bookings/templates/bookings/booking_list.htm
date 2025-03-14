@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+<h2>My Bookings</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Status</th>
+            {% if user.user_type == "owner" %}
+                <th>Actions</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.property.title }}</td>
+                <td>{{ booking.status }}</td>
+                {% if user.user_type == "owner" and booking.status == "pending" %}
+                    <td>
+                        <a href="{% url 'approve_booking' booking.id %}" class="btn btn-success btn-sm">Approve</a>
+                        <a href="{% url 'reject_booking' booking.id %}" class="btn btn-danger btn-sm">Reject</a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
