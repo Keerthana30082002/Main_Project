@@ -4,11 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('properties/', include('properties.urls')),
     path('admin/', admin.site.urls),
-
-    # App URLs
     path('users/', include('users.urls')),          # User Authentication URLs
-    path('properties/', include('properties.urls')),  # Property Management URLs
     path('bookings/', include('bookings.urls')),    # Booking System URLs
 ]
 
